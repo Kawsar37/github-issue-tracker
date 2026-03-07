@@ -37,6 +37,8 @@ const loadIssues = () => {
     .then((res) => res.json())
     .then((json) => {
       allIssues = json.data;
+      const value = document.getElementById("issues-count");
+      value.innerText = allIssues.length;
       displayIssues(json.data);
       manageSpinner(false);
     });
@@ -87,7 +89,7 @@ const displayIssues = (data) => {
     let issueCard = document.createElement("div");
     issueCard.onclick = () => showIssueModal(issue);
 
-    issueCard.classList = `bg-white border-t-4 ${issue.status === "open" ? "border-t-green-500" : "border-t-[#A855F7]"}  rounded-xl shadow-sm flex flex-col`;
+    issueCard.classList = `bg-gray-200/20 border-t-4 ${issue.status === "open" ? "border-t-green-500" : "border-t-[#A855F7]"}  rounded-xl shadow-sm flex flex-col`;
     issueCard.innerHTML = `
 
         <div class="p-4 space-y-2">
@@ -99,7 +101,7 @@ const displayIssues = (data) => {
             alt=${issue.status}
         />
 
-        <div id="priority" class="${issue.priority === "high" ? "text-red-400 bg-red-400/20" : issue.priority === "low" ? "text-gray-400 bg-gray-400/20" : "text-amber-400 bg-amber-400/20"}  px-4 py-1  rounded-full">${issue.priority.toUpperCase()}</div>
+        <div id="priority" class="${issue.priority === "high" ? "text-red-400 bg-red-400/20" : issue.priority === "low" ? "text-gray-400 bg-gray-400/20" : "text-amber-400 bg-amber-400/20"}  px-4 py-1  rounded-full flex items-center justify-center">${issue.priority.toUpperCase()}</div>
         </div>
 
         <h4 class="font-semibold">${issue.title}</h4>
