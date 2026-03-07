@@ -24,8 +24,13 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="shortcut icon"
+      href="./assets/github-logo.png"
+      type="image/x-icon"
+    />
   </head>
-  <body class="geist-font bg-base-200">
+  <body class="geist-font bg-base-200 min-h-screen">
     <header
       class="flex items-center justify-between border-b-2 border-b-gray-400/20 py-3 md:px-20 px-5"
     >
@@ -59,11 +64,18 @@
                   <path d="m21 21-4.3-4.3"></path>
                 </g>
               </svg>
-              <input type="text" placeholder="Search issues..." required />
+              <input
+                id="search-input"
+                type="text"
+                placeholder="Search issues..."
+                required
+              />
             </label>
             <div class="validator-hint hidden">Enter valid email address</div>
           </div>
-          <button class="btn btn-primary join-item">Search</button>
+          <button class="btn btn-primary join-item" onclick="searchIssue()">
+            Search
+          </button>
         </div>
       </div>
     </header>
@@ -72,9 +84,27 @@
       <section
         class="md:max-w-9/12 max-w-11/12 mx-auto bg-white p-6 gap-2 rounded-lg border border-gray-400/20 flex flex-wrap"
       >
-        <button class="btn btn-primary min-w-[90px]">All</button>
-        <button class="btn btn-outline min-w-[90px]">Open</button>
-        <button class="btn btn-outline min-w-[90px]">Closed</button>
+        <button
+          id="all"
+          class="btn btn-primary min-w-[90px] category-btn"
+          onclick="btnEvent('all')"
+        >
+          All
+        </button>
+        <button
+          id="open"
+          class="btn min-w-[90px] category-btn"
+          onclick="btnEvent('open')"
+        >
+          Open
+        </button>
+        <button
+          id="closed"
+          class="btn min-w-[90px] category-btn"
+          onclick="btnEvent('closed')"
+        >
+          Closed
+        </button>
       </section>
 
       <section
@@ -89,7 +119,7 @@
 
           <div>
             <div class="flex gap-1 font-bold md:text-xl text-lg">
-              <span>50</span>
+              <span id="issues-count">50</span>
               <p>Issues</p>
             </div>
             <p class="text-[#64748B]">Track and manage your project issues</p>
@@ -109,52 +139,28 @@
         </div>
       </section>
 
-      <section id="issues-container" class="grid grid-col-1 md:grid-col-3 lg:grid-col-4 p-5 sm:p-6 bg-base-400 md:max-w-9/12 max-w-11/12 mx-auto shadow-xl rounded-bl-lg rounded-br-lg">
-       <!-- Issue Card -->
-        <div
-          id="issue-card"
-          class="bg-white border-t-3 border-t-green-500 rounded-xl"
-        >
-          <div class="p-4 space-y-2">
-            <div class="flex justify-between">
-            <img
-            width="32"
-              id="status-icon"
-              src="./assets/Open-Status.png"
-              alt="Open-Status"
-            />
+      <section
+        id="issues-container"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 p-5 sm:p-6 bg-base-400 md:max-w-9/12 max-w-11/12 mx-auto rounded-bl-lg rounded-br-lg"
+      >
+        <!-- Issue Card -->
+      </section>
+      <section id="spinner" class="flex justify-center items-center min-h-40">
+        <span class="loading loading-dots loading-xl"></span>
+      </section>
 
-            <div id="priority" class="text-red-400 px-4 py-1 bg-red-400/20 rounded-full">High</div>
-          </div>
-
-          <h4 class="font-semibold">Fix Naviggation Menu on Mobile Devices</h4>
-
-          <p class="text-[#64748B]">
-            The navigation menu doesn't collapse properly on mobile devices...
-          </p>
-
-          <div id="labels" class="flex flex-wrap gap-1">
-            <span
-              class="bg-red-200/50 text-red-600 px-2 py-1 rounded-full border-2 border-red-300 small flex items-center justify-center gap-1"
-              ><i class="fa-solid fa-bug"></i> BUG</span
-            >
-            <span
-              class="bg-amber-200/50 text-amber-600 px-2 py-1 rounded-full border-2 border-amber-300 small flex items-center justify-center gap-1"
-              ><i class="fa-regular fa-life-ring"></i></i> HELP WANTED</span
-            >
-            <span
-              class="bg-green-200/50 text-green-600 px-2 py-1 rounded-full border-2 border-green-300 small flex items-center justify-center gap-1"
-              ><i class="fa-solid fa-wand-magic-sparkles"></i>ENHANCEMENT</span
-            >
-          </div>
-          </div>
-          <div class="text-[#64748B] space-y-2 p-4 border-t border-t-gray-400/30">
-            <p>#1 by jon_doe</p>
-            <p>1/15/2024</p>
+      <!-- Open the modal using ID.showModal() method -->
+      <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box">
+          <div id="modal-container"></div>
+          <div class="modal-action">
+            <form method="dialog">
+              <!-- if there is a button in form, it will close the modal -->
+              <button class="btn btn-primary">Close</button>
+            </form>
           </div>
         </div>
-        
-      </section>
+      </dialog>
     </main>
 
     <script src="./script.js"></script>
