@@ -158,7 +158,7 @@ function showIssueModal(issue) {
                 <span class="text-white px-4 py-2 ${issue.status === "open" ? "bg-green-600" : "bg-red-600"}  rounded-full"
                   >${issue.status === "open" ? "Opened" : "Closed"}</span
                 >
-                <i class="fa-solid fa-circle text-[8px]"></i> Opened by ${issue.assignee} <i class="fa-solid fa-circle text-[8px]"></i> 22/2/2025
+                <i class="fa-solid fa-circle text-[8px]"></i> Opened by ${issue.assignee ? issue.assignee : "None"} <i class="fa-solid fa-circle text-[8px]"></i> 22/2/2025
               </div>
             </div>
 
