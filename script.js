@@ -115,8 +115,8 @@ const displayIssues = (data) => {
         </div>
         </div>
         <div class="text-[#64748B] space-y-2 p-4 border-t border-t-gray-400/30 mt-auto">
-        <p>#1 by ${issue.author}</p>
-        <p>${issue.createdAt}</p>
+        <p>#${issue.id} by ${issue.author}</p>
+        <p>${issue.createdAt.split("T")[0]}</p>
         </div>
     </div>
   `;
