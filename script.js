@@ -125,11 +125,15 @@ const displayIssues = (data) => {
 };
 
 function searchIssue() {
+  const searchText = document.getElementById("search-input").value;
+  if (searchText.length === 0) {
+    alert("Please Type Something To Search!");
+    return;
+  }
   removeAllBtnClass();
   const issuesContainer = document.getElementById("issues-container");
   issuesContainer.innerHTML = "";
 
-  const searchText = document.getElementById("search-input").value;
   const url = `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchText}`;
   manageSpinner(true);
   fetch(url)
